@@ -6,7 +6,6 @@
 - Express.js (web framework)
 - Prisma (ORM)
 
-
 ## Setup
 
 1. Instalar requisitos:

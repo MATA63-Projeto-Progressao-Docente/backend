@@ -1,5 +1,5 @@
-import { User } from "@prisma/client"
-import BaseService from "./abstract/BaseService"
+import { User } from '@prisma/client';
+import BaseService from './abstract/BaseService';
 
 class AuthService extends BaseService {
   async registerUser(name: string, email: string): Promise<User> {
@@ -9,9 +9,9 @@ class AuthService extends BaseService {
         email,
         password: '',
       },
-    })
+    });
 
-    return result
+    return result;
   }
 }
 
