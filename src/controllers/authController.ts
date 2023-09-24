@@ -1,27 +1,44 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { ZodError, z } from 'zod';
 import authService from '../services/authService';
-import { z } from 'zod';
 import { tokenTTL } from '../config';
+import ValidationError from '../errors/ValidationError';
 
-export async function signUp(req: Request, res: Response) {
-  const { name, email } = req.body;
-
-  const result = await authService.registerUser(name, email);
-
-  res.status(201).json(result);
-}
-
-export async function login(req: Request, res: Response) {
+export async function login(req: Request, res: Response, next: NextFunction) {
   const loginSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8).max(72),
+    email: z
+      .string({
+        required_error: 'Email is required',
+        invalid_type_error: 'Email must be a string',
+      })
+      .email({ message: 'Invalid email address' }),
+    password: z
+      .string({
+        required_error: 'Email is required',
+        invalid_type_error: 'Email must be a string',
+      })
+      .min(8, 'Password too short').max(72, 'Password too long'),
   });
 
-  const data = loginSchema.parse(req.body);
+  const validationResult = loginSchema.safeParse(req.body);
 
-  const { token } = await authService.login(data);
+  if (!validationResult.success) {
+    return next(ValidationError.fromZod(validationResult.error as ZodError));
+  }
 
-  res.cookie('token', token, { httpOnly: true, secure: true, maxAge: tokenTTL });
+  try {
+    const token = await authService.login(validationResult.data);
+
+    res.cookie('token', token, { httpOnly: true, secure: true, maxAge: tokenTTL });
+  } catch (e) {
+    return next(e);
+  }
+
+  return res.status(204).send();
+}
+
+export async function logout(req: Request, res: Response) {
+  res.clearCookie('token');
 
   res.status(204).send();
 }

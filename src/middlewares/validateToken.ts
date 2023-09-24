@@ -9,10 +9,10 @@ export default function validateToken(
   res: Response,
   next: NextFunction,
 ) {
-  const token: string | null = req.cookies.token;
+  const { token } = req.cookies;
 
   if (!token) {
-    return next(AuthError.missingToken());
+    next(AuthError.missingToken());
   }
 
   try {

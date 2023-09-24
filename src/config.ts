@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 /**
  * The time to live for the JWT token in milliseconds.
  *

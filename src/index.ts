@@ -1,8 +1,9 @@
-import cors from 'cors';
-import express from 'express';
 import cookieParser from 'cookie-parser';
-import handleError from './middlewares/handleError';
+import cors from 'cors';
+import 'dotenv/config';
+import express from 'express';
 import router from './routes';
+import handleError from './middlewares/handleError';
 
 const app = express();
 
@@ -10,8 +11,13 @@ app.use(express.json({}));
 app.use(cors());
 app.use(cookieParser());
 
-app.use(router);
+app.use('/', router);
 
-app.use(handleError);
+router.use(handleError);
 
-app.listen(4000, () => console.log(`🚀 Server ready at: http://localhost:3000`));
+const PORT = process.env.PORT || 4000;
+
+app.listen(4000, () => {
+  // eslint-disable-next-line no-console
+  console.log(`🚀 Server ready at: http://${process.env.SERVER_URL}:${PORT}`);
+});
