@@ -6,7 +6,7 @@ class AuthError extends ApiError {
   }
 
   static missingToken() {
-    return new this('Token not provided', 401);
+    return new this('Not authenticated', 401);
   }
 
   static invalidCredentials() {

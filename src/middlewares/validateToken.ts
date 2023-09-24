@@ -16,7 +16,7 @@ export default function validateToken(
   }
 
   try {
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET!, {
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET!, {
       maxAge: `${tokenTTL}ms`,
     }) as JWTPayload;
 

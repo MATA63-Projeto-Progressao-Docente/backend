@@ -20,7 +20,7 @@ class AuthService extends BaseService {
 
         const ttlInSeconds = 60 * 60 * 24 * 2; // Two days
 
-        return jwt.sign(payload, process.env.JWT_SECRET as string, {
+        return jwt.sign(payload, process.env.TOKEN_SECRET as string, {
           expiresIn: ttlInSeconds,
         });
       }
