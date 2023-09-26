@@ -1,0 +1,52 @@
+post:
+  summary: Login no sistema.
+
+  tags:
+    - auth
+
+  requestBody:
+    description: Corpo da requisição.
+    required: true
+    content:
+      json:
+        schema:
+          type: object
+
+          properties:
+            email:
+              type: string
+              required: true
+              description: E-mail de acesso do usuário.
+
+            password:
+              type: string
+              required: true
+              description: Senha de acesso do usuário.
+
+  responses:
+    204:
+      description: No content
+    400:
+      description: >
+        ```
+          {
+            "message": "Invalid data",
+            "details": [
+              {
+                "validation": "email",
+                "code": "invalid_string",
+                "message": "Invalid email address",
+                "path": [
+                  "email"
+                ]
+              }
+            ]
+          }
+        ```
+    422:
+      description: >
+        ```
+          {
+            "message": "Provided credentials do not match any existing account."
+          }
+        ```

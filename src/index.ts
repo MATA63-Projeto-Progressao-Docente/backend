@@ -1,14 +1,23 @@
-import express from 'express'
-import authRouter from './routes/auth'
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import 'dotenv/config';
+import express from 'express';
+import router from './routes';
+import handleError from './middlewares/handleError';
 
-const app = express()
+const app = express();
 
-app.use(express.json({}))
+app.use(express.json({}));
+app.use(cors());
+app.use(cookieParser());
 
-app.use(authRouter);
+app.use('/', router);
 
-const server = app.listen(3000, () =>
-  console.log(`
-🚀 Server ready at: http://localhost:3000
-⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`),
-)
+router.use(handleError);
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(4000, () => {
+  // eslint-disable-next-line no-console
+  console.log(`🚀 Server ready at: http://${process.env.SERVER_URL}:${PORT}`);
+});

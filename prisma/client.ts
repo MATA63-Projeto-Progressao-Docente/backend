@@ -3,8 +3,8 @@
  * Code licensed under Apache License v2.0: https://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
-let prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
-export default prisma
+export default prisma;

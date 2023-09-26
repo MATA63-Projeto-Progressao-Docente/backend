@@ -6,23 +6,7 @@
 - Express.js (web framework)
 - Prisma (ORM)
 
+## Execução do projeto
 
-## Setup
-
-1. Instalar requisitos:
-   - npm (recomendado instalar com o nvm)
-
-2. Instalar dependências:
-   ```
-   npm install
-   ```
-
-3. Criar o arquivo de váriaveis do ambiente:
-   ```
-   cp .env.example .env
-   ```
-
-4. Inicializar o Prisma:
-   ```
-   npx prisma generate
-   ```
+*Arquivo `docker-compose` em construção.*  
+*Enquanto isso, use a seção setup do guia [CONTRIBUTING](CONTRIBUTING.md)*
