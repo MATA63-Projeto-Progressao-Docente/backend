@@ -23,4 +23,90 @@ model User {
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  department Department[]
+}
+
+model Field {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  documents Document[]
+}
+
+model Document {
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  number  Int
+  fieldId Int
+
+  field              Field               @relation(fields: [fieldId], references: [id])
+  submittedDocuments SubmittedDocument[]
+
+  @@unique([fieldId, number])
+}
+
+model SubmittedDocument {
+  id         Int    @id @default(autoincrement())
+  url        String
+  documentId Int
+
+  document Document @relation(fields: [documentId], references: [id])
+}
+
+model Class {
+  id     Int    @id @default(autoincrement())
+  name   String @unique
+  letter String @db.Char(1)
+  level  Int    @db.SmallInt
+
+  professors Professor[]
+  Process    Process[]
+}
+
+model Department {
+  id         Int    @id @default(autoincrement())
+  name       String @unique
+  headUserId Int
+  headUser   User   @relation(fields: [headUserId], references: [id])
+
+  professors Professor[]
+}
+
+enum RegimeCategory {
+  HALF_TIME
+  FULL_TIME
+  EXCLUSIVE
+}
+
+model Professor {
+  id           Int            @id @default(autoincrement())
+  name         String
+  category     RegimeCategory
+  classId      Int
+  class        Class          @relation(fields: [classId], references: [id])
+  departmentId Int
+  department   Department     @relation(fields: [departmentId], references: [id])
+
+  processes Process[]
+}
+
+enum ProcessStatus {
+  DRAFT
+  ANALYSING
+  APPROVED
+  REJECTED
+}
+
+model Process {
+  id              Int           @id @default(autoincrement())
+  status          ProcessStatus @default(DRAFT)
+  targetClassId   Int
+  targetClass     Class         @relation(fields: [targetClassId], references: [id])
+  professorId     Int
+  professor       Professor     @relation(fields: [professorId], references: [id])
+  submittedAt     DateTime?
+  finishedAt      DateTime?
+  efetivationDate DateTime?
+  createdAt       DateTime      @default(now())
 }
