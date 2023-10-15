@@ -1,0 +1,47 @@
+post:
+  summary: Cria um novo processo de progressão.
+
+  tags:
+    - processes
+
+  requestBody:
+    description: Corpo da requisição.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            targetClassId:
+              type: number
+              description: ID da classe alvo do processo.
+            professorId:
+              type: number
+              description: ID do docente que pretende abrir o processo.
+            status:
+              type: string
+              description: Status do processo.
+              default: DRAFT
+              enum:
+                - DRAFT
+                - ANALYSING
+                - APPROVED
+                - REJECTED
+            documents:
+              type: object
+              description: Documentos do processo.
+          required:
+            - targetClassId
+            - professorId
+
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+                description: ID do processo.

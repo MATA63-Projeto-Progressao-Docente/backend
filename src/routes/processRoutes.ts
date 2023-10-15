@@ -3,6 +3,6 @@ import { createProcess } from '../controllers/processController';
 
 const processRouter = Router();
 
-processRouter.post('/create', createProcess);
+processRouter.post('/', createProcess);
 
 export default processRouter;
