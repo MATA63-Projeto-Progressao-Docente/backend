@@ -1,17 +1,19 @@
 import { ProcessStatus } from '@prisma/client';
 import BaseService from './abstract/BaseService';
 
+type ProcessCreateData = {
+  targetClassId: number,
+  professorId: number,
+  status?: ProcessStatus,
+  documents: Array<{
+    url: string,
+    totalPoints: number,
+    activityId: number,
+  }>
+};
+
 class ProcessService extends BaseService {
-  async createProcess(data: {
-    targetClassId: number,
-    professorId: number,
-    status?: ProcessStatus,
-    documents: Array<{
-      url: string,
-      totalPoints: number,
-      activityId: number,
-    }>
-  }) {
+  async createProcess(data: ProcessCreateData) {
     const created = await this.prisma.process.create({
       data: {
         targetClassId: data.targetClassId,
