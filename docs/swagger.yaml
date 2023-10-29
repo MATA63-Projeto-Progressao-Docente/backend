@@ -12,6 +12,9 @@ paths:
   /login:
     $ref: "./auth/login.yaml"
 
+  /users:
+    $ref: "./users/index.yaml"
+
 components:
   schemas:
     $ref: "./schemas.yaml"

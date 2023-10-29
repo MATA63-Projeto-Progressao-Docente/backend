@@ -1,0 +1,73 @@
+post:
+  summary: Registra um usuário.
+
+  tags:
+    - users
+
+  requestBody:
+    description: Corpo da requisição.
+    required: true
+    content:
+      json:
+        schema:
+          type: object
+
+          properties:
+            name:
+              type: string
+              required: false
+              description: Nome do usuário
+
+            email:
+              type: string
+              required: true
+              description: E-mail de acesso do usuário.
+
+            password:
+              type: string
+              required: true
+              description: Senha de acesso do usuário.
+
+            role:
+              type: string
+              required: true
+              description: "Possíveis valores: 'USER' | 'ADMIN'"
+
+  responses:
+    201:
+      description: >
+        ```
+          {
+            "id": 2,
+            "name": "User",
+            "email": "user@ufba.br"
+          }
+        ```
+    400:
+      description: >
+        ```
+          {
+            "message": "Invalid data",
+            "details": [
+              {
+                "received": "PAPA",
+                "code": "invalid_enum_value",
+                "options": [
+                  "USER",
+                  "ADMIN"
+                ],
+                "path": [
+                  "role"
+                ],
+                "message": "Invalid enum value. Expected 'USER' | 'ADMIN', received 'PAPA'"
+              }
+            ]
+          }
+        ```
+    422:
+      description: >
+        ```
+          {
+            "message": "Provided credentials do not match any existing account."
+          }
+        ```
