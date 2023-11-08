@@ -21,3 +21,6 @@ paths:
 
   /processes:
     $ref: "./processes/processes.yaml"
+
+  /activities:
+    $ref: "./activities/activities.yaml"
