@@ -24,3 +24,5 @@ paths:
 
   /activities:
     $ref: "./activities/activities.yaml"
+  /users:
+    $ref: "./users/index.yaml"

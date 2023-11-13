@@ -3,6 +3,7 @@ import * as authController from '../controllers/authController';
 import validateToken from '../middlewares/validateToken';
 import processRouter from './processRoutes';
 import activityRouter from './activityRoutes';
+import usersRoutes from './users';
 
 const router = Router();
 
@@ -11,8 +12,10 @@ router.post('/login', authController.login);
 
 router.post('/logout', validateToken, authController.logout);
 
+router.use('/activities', validateToken, activityRouter);
+
 router.use('/processes', validateToken, processRouter);
 
-router.use('/activities', validateToken, activityRouter);
+router.use('/users', validateToken, usersRoutes);
 
 export default router;
