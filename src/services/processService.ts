@@ -29,6 +29,17 @@ class ProcessService extends BaseService {
 
     return created;
   }
+
+  async assignEvaluationCommittee(processId: number, professorIds: number[]) {
+    const result = await this.prisma.processEvaluatorProfessor.createMany({
+      data: professorIds.map((professorId) => ({
+        processId,
+        professorId,
+      })),
+    });
+
+    return result;
+  }
 }
 
 export default new ProcessService();

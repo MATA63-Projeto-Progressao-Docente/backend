@@ -7,6 +7,7 @@ import HttpStatusCodes from '../enums/HttpStatusCodes';
 import processService from '../services/processService';
 import ProcessStatus from '../enums/ProcessStatus';
 import PrismaError from '../errors/PrismaError';
+import { AuthenticatedRequest } from '../types';
 
 export async function createProcess(req: Request, res: Response, next: NextFunction) {
   const validatorSchema = z.object({
@@ -39,4 +40,32 @@ export async function createProcess(req: Request, res: Response, next: NextFunct
 
     return next(e);
   }
+}
+
+export async function assignEvaluationCommittee(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  const validatorSchema = z.object({
+    professorIds: z
+      .number({
+        required_error: 'Ao menos um ID deve ser fornecido',
+        invalid_type_error: 'O ID deve ser um número',
+      })
+      .int().positive()
+      .array()
+      .nonempty({ message: 'Ao menos um ID deve ser fornecido' }),
+  });
+
+  const validationResult = validatorSchema.safeParse(req.body);
+
+  if (!validationResult.success) {
+    return next(ValidationError.fromZod(validationResult.error as ZodError));
+  }
+
+  const result = processService
+    .assignEvaluationCommittee(Number(req.params.id), validationResult.data.professorIds);
+
+  return res.status(200).json(result);
 }

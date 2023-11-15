@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
@@ -30,7 +30,7 @@ model User {
 }
 
 model Field {
-  id   Int    @id 
+  id   Int    @id
   name String @unique
 
   activities Activity[]
@@ -93,10 +93,11 @@ model Professor {
   userId       Int            @unique
   category     RegimeCategory
 
-  class      Class      @relation(fields: [classId], references: [id])
-  department Department @relation(fields: [departmentId], references: [id])
-  user       User       @relation(fields: [userId], references: [id])
-  processes  Process[]
+  class                     Class                       @relation(fields: [classId], references: [id])
+  department                Department                  @relation(fields: [departmentId], references: [id])
+  user                      User                        @relation(fields: [userId], references: [id])
+  processes                 Process[]
+  ProcessEvaluatorProfessor ProcessEvaluatorProfessor[]
 }
 
 enum ProcessStatus {
@@ -116,7 +117,18 @@ model Process {
   createdAt       DateTime      @default(now())
   status          ProcessStatus @default(DRAFT)
 
-  professor          Professor           @relation(fields: [professorId], references: [id])
-  targetClass        Class               @relation(fields: [targetClassId], references: [id])
-  submittedDocuments SubmittedDocument[]
+  professor                 Professor                   @relation(fields: [professorId], references: [id])
+  targetClass               Class                       @relation(fields: [targetClassId], references: [id])
+  SubmittedDocument         SubmittedDocument[]
+  ProcessEvaluatorProfessor ProcessEvaluatorProfessor[]
+}
+
+model ProcessEvaluatorProfessor {
+  professorId Int
+  processId   Int
+
+  professor Professor @relation(fields: [professorId], references: [id])
+  process   Process   @relation(fields: [processId], references: [id])
+
+  @@unique([professorId, processId])
 }

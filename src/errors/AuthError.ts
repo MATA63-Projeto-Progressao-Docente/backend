@@ -16,6 +16,10 @@ class AuthError extends ApiError {
   static invalidCredentials() {
     return new this('Provided credentials do not match any existing account.', 422);
   }
+
+  static forbidden() {
+    return new this('You do not have access to this resource', 403);
+  }
 }
 
 export default AuthError;
