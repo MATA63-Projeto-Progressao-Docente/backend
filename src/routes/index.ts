@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as authController from '../controllers/authController';
+import * as activityController from '../controllers/activityController';
 import validateToken from '../middlewares/validateToken';
 import usersRoutes from './users';
 
@@ -11,5 +12,9 @@ router.post('/login', authController.login);
 router.post('/logout', validateToken, authController.logout);
 
 router.use('/users', validateToken, usersRoutes);
+
+router.get('/activities/:fieldId/:number', activityController.getAtivityByFildNumber)
+
+router.get('/activities', activityController.getAllAtivity)
 
 export default router;
