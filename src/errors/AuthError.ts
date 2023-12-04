@@ -9,6 +9,10 @@ class AuthError extends ApiError {
     return new this('Not authenticated', 401);
   }
 
+  static unauthorized() {
+    throw new this('Forbidden access', 403);
+  }
+
   static invalidCredentials() {
     return new this('Provided credentials do not match any existing account.', 422);
   }

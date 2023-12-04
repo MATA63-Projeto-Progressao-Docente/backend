@@ -8,13 +8,21 @@ servers:
   - url: http://localhost:4000
     description: development server
 
+components:
+  securitySchemes:
+    authToken:
+      type: apiKey
+      in: cookie
+      name: token
+
 paths:
   /login:
     $ref: "./auth/login.yaml"
 
+  /processes:
+    $ref: "./processes/processes.yaml"
+
+  /activities:
+    $ref: "./activities/activities.yaml"
   /users:
     $ref: "./users/index.yaml"
-
-components:
-  schemas:
-    $ref: "./schemas.yaml"

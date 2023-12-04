@@ -1,17 +1,38 @@
-import BaseService from "./abstract/BaseService";
+import BaseService from './abstract/BaseService';
+
+type ActivityCreateData = {
+  name: string;
+  number: number;
+  points: number;
+  fieldId: number;
+};
 
 class ActivityService extends BaseService {
-    getAll() {
-        return this.prisma.activity.findMany();
-    }
+  async createActivity(data: ActivityCreateData) {
+    const created = await this.prisma.activity.create({
+      data: {
+        name: data.name,
+        number: data.number,
+        points: data.points,
+        fieldId: data.fieldId,
+      },
+      select: { id: true },
+    });
+
+    return created;
+  }
+
+  getAll() {
+      return this.prisma.activity.findMany();
+  }
     
-    getAtivityByFildNumber(fieldId: number, number: number) {
-        return this.prisma.activity.findFirst({
-            where: { 
-                fieldId,
-                number
-            }
-        });
+  getAtivityByFildNumber(fieldId: number, number: number) {
+    return this.prisma.activity.findFirst({
+        where: { 
+            fieldId,
+            number
+        }
+      });
     }
 }
 

@@ -2,6 +2,8 @@ import { Router } from 'express';
 import * as authController from '../controllers/authController';
 import * as activityController from '../controllers/activityController';
 import validateToken from '../middlewares/validateToken';
+import processRouter from './processRoutes';
+import activityRouter from './activityRoutes';
 import usersRoutes from './users';
 
 const router = Router();
@@ -10,6 +12,10 @@ const router = Router();
 router.post('/login', authController.login);
 
 router.post('/logout', validateToken, authController.logout);
+
+router.use('/activities', validateToken, activityRouter);
+
+router.use('/processes', validateToken, processRouter);
 
 router.use('/users', validateToken, usersRoutes);
 

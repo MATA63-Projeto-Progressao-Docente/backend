@@ -39,6 +39,7 @@ class AuthService extends BaseService {
       if (isValidPassword) {
         const payload: JWTPayload = {
           userId: user.id,
+          role: user.role,
         };
 
         const ttlInSeconds = 60 * 60 * 24 * 2; // Two days

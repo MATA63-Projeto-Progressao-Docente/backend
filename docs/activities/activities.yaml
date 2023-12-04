@@ -1,0 +1,38 @@
+post:
+  summary: Cria uma atividade para progressão.
+
+  tags:
+    - activities
+
+  requestBody:
+    description: Corpo da requisição.
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+              description: Nome da atividade.
+            number:
+              type: number
+              description: Número da atividade.
+            points:
+              type: number
+              description: Pontos da atividade.
+            fieldId:
+              type: number
+              description: ID do campo da atividade.
+
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: number
+                description: ID da atividade.

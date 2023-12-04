@@ -116,7 +116,7 @@ model Process {
   createdAt       DateTime      @default(now())
   status          ProcessStatus @default(DRAFT)
 
-  professor         Professor           @relation(fields: [professorId], references: [id])
-  targetClass       Class               @relation(fields: [targetClassId], references: [id])
-  SubmittedDocument SubmittedDocument[]
+  professor          Professor           @relation(fields: [professorId], references: [id])
+  targetClass        Class               @relation(fields: [targetClassId], references: [id])
+  submittedDocuments SubmittedDocument[]
 }

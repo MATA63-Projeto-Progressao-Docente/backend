@@ -1,0 +1,5 @@
+authToken:
+  type: apiKey
+  description: Authorization to access API protected routes.
+  name: token
+  in: cookie

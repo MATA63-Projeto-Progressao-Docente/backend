@@ -8,7 +8,7 @@ post:
     description: Corpo da requisição.
     required: true
     content:
-      json:
+      application/json:
         schema:
           type: object
 
@@ -26,6 +26,11 @@ post:
   responses:
     204:
       description: No content
+      headers:
+        Set-Cookie:
+          schema:
+            type: string
+            example: token=abcde12345; Path=/; HttpOnly; Secure
     400:
       description: >
         ```

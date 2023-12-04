@@ -21,7 +21,7 @@ export default function validateToken(
     }) as JWTPayload;
 
     req.userId = decodedToken.userId;
-
+    req.userRole = decodedToken.role;
     next();
   } catch (err) {
     next(AuthError.invalidToken());
