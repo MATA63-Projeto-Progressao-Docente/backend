@@ -19,8 +19,8 @@ router.use('/processes', validateToken, processRouter);
 
 router.use('/users', validateToken, usersRoutes);
 
-router.get('/activities/:fieldId/:number', activityController.getAtivityByFildNumber)
+router.get('/activities/:fieldId/:number', activityController.getActivityByFieldNumber);
 
-router.get('/activities', activityController.getAllAtivity)
+router.get('/activities', activityController.getAllActivity);
 
 export default router;

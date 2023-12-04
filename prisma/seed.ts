@@ -3,30 +3,28 @@ import activitiesJson from './jsons/activities.json';
 import fieldsJson from './jsons/fields.json';
 
 async function seedFields() {
-  const promises = fieldsJson.map(async (field) => {
-    return prisma.field.upsert({
-      where:{id: field.id},
-      update:{},
-      create:{
-        id: field.id,
-        name: field.name
-      },
-    });   
-  });
+  const promises = fieldsJson.map(async (field) => prisma.field.upsert({
+    where: {
+      id: field.id,
+    },
+    update: { },
+    create: {
+      id: field.id,
+      name: field.name,
+    },
+  }));
   await Promise.all(promises);
 }
 
 async function seedActivities() {
-  const promises = activitiesJson.map(async (activity) => {
-    return prisma.activity.create({ 
-      data: {
-        name: activity.name,
-        number: activity.number, 
-        fieldId: activity.fieldId,
-        points: activity.points, 
-      },
-    });
-  });
+  const promises = activitiesJson.map(async (activity) => prisma.activity.create({
+    data: {
+      name: activity.name,
+      number: activity.number,
+      fieldId: activity.fieldId,
+      points: activity.points,
+    },
+  }));
   await Promise.all(promises);
 }
 

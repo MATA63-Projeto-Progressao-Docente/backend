@@ -38,7 +38,7 @@ model Field {
 
 model Activity {
   id      Int    @id @default(autoincrement())
-  name    String @unique
+  name    String
   number  Int
   fieldId Int
   points  Int
