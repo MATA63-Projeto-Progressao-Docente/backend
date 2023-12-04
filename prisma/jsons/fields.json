@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "CAMPO I - ATIVIDADES DE ENSINO, ORIENTAÇÃO E PARTICIPAÇÃO EM BANCAS EXAMINADORAS"
+  },
+  {
+    "id": 2,
+    "name": "CAMPO II - ATIVIDADES DE PESQUISA, PRODUÇÃO ACADÊMICA,CRIAÇÃO E INOVAÇÃO"
+  },
+  {
+    "id": 3,
+    "name": "CAMPO III - ATIVIDADES DE EXTENSÃO"
+  },
+  {
+    "id": 4,
+    "name": "CAMPO IV - RECEBIMENTO DE COMENDAS E PREMIAÇÕES ADVINDAS DO EXERCÍCIO DE ATIVIDADES ACADÊMICAS"
+  },
+  {
+    "id": 5,
+    "name": "CAMPO V - PARTICIPAÇÃO EM ATIVIDADES EDITORIAIS E/OU DE ARBITRAGEM DE PRODUÇÃO INTELECTUAL E/OU ARTÍSTICA"
+  },
+  {
+    "id": 6,
+    "name": "CAMPO VI- ATIVIDADES DE ADMINISTRAÇÃO/REPRESENTAÇÃO/ACADÊMICAS"
+  },
+  {
+    "id": 7,
+    "name": "CAMPO VII - ATIVIDADES DE CAPACITAÇÃO PROFISSIONAL"
+  },
+  {
+    "id": 8,
+    "name": "CAMPO VIII- ATIVIDADES PROFISSIONAIS"
+  },
+  {
+    "id": 9,
+    "name": "CAMPO IX - AVALIAÇÃO DOCENTE PELOS DISCENTES"
+  }
+]

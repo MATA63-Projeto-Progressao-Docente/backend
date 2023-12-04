@@ -21,6 +21,19 @@ class ActivityService extends BaseService {
 
     return created;
   }
+
+  getAll() {
+      return this.prisma.activity.findMany();
+  }
+    
+  getAtivityByFildNumber(fieldId: number, number: number) {
+    return this.prisma.activity.findFirst({
+        where: { 
+            fieldId,
+            number
+        }
+      });
+    }
 }
 
 export default new ActivityService();

@@ -30,7 +30,7 @@ model User {
 }
 
 model Field {
-  id   Int    @id @default(autoincrement())
+  id   Int    @id 
   name String @unique
 
   activities Activity[]
