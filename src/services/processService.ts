@@ -40,6 +40,36 @@ class ProcessService extends BaseService {
 
     return result;
   }
+
+  async getUserProcesses(userId: number) {
+    const processes = await this.prisma.process.findMany({
+      where: {
+        professor: {
+          userId,
+        },
+      },
+      include: {
+        targetClass: true,
+      },
+    });
+
+    return processes;
+  }
+
+  async checkOpenUserProcessExistance(userId: number) {
+    const process = await this.prisma.process.count({
+      where: {
+        professor: {
+          userId,
+        },
+        status: {
+          in: [ProcessStatus.ANALYSING, ProcessStatus.DRAFT],
+        },
+      },
+    });
+
+    return process > 0;
+  }
 }
 
 export default new ProcessService();

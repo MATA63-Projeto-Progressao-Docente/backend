@@ -93,11 +93,11 @@ model Professor {
   userId       Int            @unique
   category     RegimeCategory
 
-  class                     Class                       @relation(fields: [classId], references: [id])
-  department                Department                  @relation(fields: [departmentId], references: [id])
-  user                      User                        @relation(fields: [userId], references: [id])
-  processes                 Process[]
-  ProcessEvaluatorProfessor ProcessEvaluatorProfessor[]
+  class                      Class                       @relation(fields: [classId], references: [id])
+  department                 Department                  @relation(fields: [departmentId], references: [id])
+  user                       User                        @relation(fields: [userId], references: [id])
+  processes                  Process[]
+  processEvaluatorProfessors ProcessEvaluatorProfessor[]
 }
 
 enum ProcessStatus {
@@ -117,10 +117,10 @@ model Process {
   createdAt       DateTime      @default(now())
   status          ProcessStatus @default(DRAFT)
 
-  professor                 Professor                   @relation(fields: [professorId], references: [id])
-  targetClass               Class                       @relation(fields: [targetClassId], references: [id])
-  SubmittedDocument         SubmittedDocument[]
-  ProcessEvaluatorProfessor ProcessEvaluatorProfessor[]
+  professor                  Professor                   @relation(fields: [professorId], references: [id])
+  targetClass                Class                       @relation(fields: [targetClassId], references: [id])
+  submittedDocuments         SubmittedDocument[]
+  processEvaluatorProfessors ProcessEvaluatorProfessor[]
 }
 
 model ProcessEvaluatorProfessor {

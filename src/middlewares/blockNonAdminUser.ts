@@ -8,8 +8,8 @@ export default function blockNonAdminUser(
   next: NextFunction,
 ) {
   if (req.userRole !== 'ADMIN') {
-    next(AuthError.unauthorized());
+    return next(AuthError.unauthorized());
   }
 
-  next();
+  return next();
 }

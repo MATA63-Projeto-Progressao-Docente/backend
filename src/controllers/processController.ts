@@ -9,6 +9,24 @@ import ProcessStatus from '../enums/ProcessStatus';
 import PrismaError from '../errors/PrismaError';
 import { AuthenticatedRequest } from '../types';
 
+export async function getUserProcesses(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const processes = await processService.getUserProcesses(req.userId!);
+
+    return res.status(HttpStatusCodes.OK).json({ processes });
+  } catch (e) {
+    if (e instanceof PrismaClientKnownRequestError) {
+      return next(PrismaError.fromPrismaError(e));
+    }
+
+    return next(e);
+  }
+}
+
 export async function createProcess(req: Request, res: Response, next: NextFunction) {
   const validatorSchema = z.object({
     targetClassId: z.number().int().positive(),
