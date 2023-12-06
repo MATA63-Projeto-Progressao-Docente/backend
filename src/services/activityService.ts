@@ -23,7 +23,11 @@ class ActivityService extends BaseService {
   }
 
   getAll() {
-    return this.prisma.activity.findMany();
+    return this.prisma.activity.findMany({
+      include: {
+        field: true,
+      },
+    });
   }
 
   getActivityByFildNumber(fieldId: number, number: number) {

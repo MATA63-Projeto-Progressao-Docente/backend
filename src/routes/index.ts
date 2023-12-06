@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as authController from '../controllers/authController';
-import * as activityController from '../controllers/activityController';
+import * as fieldController from '../controllers/fieldController';
 import validateToken from '../middlewares/validateToken';
 import processRouter from './processRoutes';
 import activityRouter from './activityRoutes';
@@ -19,8 +19,8 @@ router.use('/processes', validateToken, processRouter);
 
 router.use('/users', validateToken, usersRoutes);
 
-router.get('/activities/:fieldId/:number', activityController.getActivityByFieldNumber);
+router.get('/fields', validateToken, fieldController.getAllFields);
 
-router.get('/activities', activityController.getAllActivity);
+router.get('/fields/:fieldId', validateToken, fieldController.getField);
 
 export default router;
