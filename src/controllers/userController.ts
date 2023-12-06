@@ -3,6 +3,7 @@ import z, { ZodError } from 'zod';
 import { Role } from '@prisma/client';
 import ValidationError from '../errors/ValidationError';
 import authService from '../services/authService';
+import userService from '../services/userService';
 
 // eslint-disable-next-line import/prefer-default-export
 export async function register(req: Request, res: Response, next: NextFunction) {
@@ -36,6 +37,26 @@ export async function register(req: Request, res: Response, next: NextFunction) 
 
   try {
     const data = await authService.register(validationResult.data);
+
+    return res.status(201).json(data);
+  } catch (e) {
+    return next(e);
+  }
+}
+
+export async function getAll(req: Request, res: Response, next: NextFunction) {
+  try {
+    const data = await userService.getAll();
+
+    return res.status(201).json(data);
+  } catch (e) {
+    return next(e);
+  }
+}
+
+export async function getOne(req: Request, res: Response, next: NextFunction) {
+  try {
+    const data = await userService.getOne(parseInt(req.params.userId, 10));
 
     return res.status(201).json(data);
   } catch (e) {
