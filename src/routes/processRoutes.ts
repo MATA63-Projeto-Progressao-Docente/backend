@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import { createProcess } from '../controllers/processController';
-import validateToken from '../middlewares/validateToken';
+import * as processController from '../controllers/processController';
 
 const processRouter = Router();
 
-processRouter.post('/', validateToken, createProcess);
+processRouter.post(
+  '/',
+  processController.createProcess,
+);
 
 export default processRouter;

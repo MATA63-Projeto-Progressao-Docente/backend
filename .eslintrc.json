@@ -15,7 +15,9 @@
 		"sourceType": "module",
 		"project": "./tsconfig.json"
 	},
-	"plugins": ["@typescript-eslint"],
+	"plugins": [
+		"@typescript-eslint"
+	],
 	"rules": {
 		"max-len": [
 			"error",
@@ -25,7 +27,10 @@
 				"ignoreComments": true,
 				"ignoreTrailingComments": true
 			}
-		]
+		],
+		"import/prefer-default-export": "off"
 	},
-	"ignorePatterns": ["dist/"]
+	"ignorePatterns": [
+		"dist/"
+	]
 }
