@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { File } from 'buffer';
+import { randomUUID } from 'crypto';
 import { initializeApp } from 'firebase/app';
 import {
   getDownloadURL, getStorage, ref, uploadBytes,
@@ -15,13 +15,13 @@ const app = initializeApp({
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export async function uploadDocument(file: File) {
+export async function uploadDocument(fileBuffer: Buffer, fileName: string) {
   const storage = getStorage(app);
 
-  const filePath = `documents/${file.name}`;
+  const filePath = `documents/${randomUUID()}-${fileName}`;
   const documentRef = ref(storage, filePath);
 
-  const result = await uploadBytes(documentRef, file);
+  const result = await uploadBytes(documentRef, fileBuffer);
 
   return getDownloadURL(result.ref);
 }

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import multer, { memoryStorage } from 'multer';
 import * as authController from '../controllers/authController';
 import * as fieldController from '../controllers/fieldController';
 import * as classesController from '../controllers/classesController';
@@ -6,6 +7,7 @@ import validateToken from '../middlewares/validateToken';
 import processRouter from './processRoutes';
 import activityRouter from './activityRoutes';
 import usersRoutes from './users';
+import { uploadFile } from '../controllers/uploadController';
 
 const router = Router();
 
@@ -25,5 +27,12 @@ router.get('/fields', validateToken, fieldController.getAllFields);
 router.get('/fields/:fieldId', validateToken, fieldController.getField);
 
 router.get('/classes', classesController.getAll);
+
+router.post(
+  '/upload',
+  validateToken,
+  multer({ storage: memoryStorage() }).single('file'),
+  uploadFile,
+);
 
 export default router;
