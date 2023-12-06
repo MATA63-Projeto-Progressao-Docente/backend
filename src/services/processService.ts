@@ -29,6 +29,20 @@ class ProcessService extends BaseService {
 
     return created;
   }
+
+  async getProcessesFromUser(userId: number) {
+    const { id: professorId } = await this.prisma.professor.findFirstOrThrow({
+      where: {
+        userId,
+      },
+    });
+    const processes = await this.prisma.process.findMany({
+      where: {
+        professorId,
+      },
+    });
+    return processes;
+  }
 }
 
 export default new ProcessService();

@@ -4,6 +4,8 @@ import { Role } from '@prisma/client';
 import ValidationError from '../errors/ValidationError';
 import authService from '../services/authService';
 import userService from '../services/userService';
+import { AuthenticatedRequest } from '../types';
+import processService from '../services/processService';
 
 // eslint-disable-next-line import/prefer-default-export
 export async function register(req: Request, res: Response, next: NextFunction) {
@@ -59,6 +61,17 @@ export async function getOne(req: Request, res: Response, next: NextFunction) {
     const data = await userService.getOne(parseInt(req.params.userId, 10));
 
     return res.status(201).json(data);
+  } catch (e) {
+    return next(e);
+  }
+}
+
+export async function getUserInfo(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    if (!req.userId) { return res.status(401).json({ message: 'User not Authenticated' }); }
+    const data = await userService.getOne(req.userId);
+    const processes = await processService.getProcessesFromUser(req.userId);
+    return res.status(201).json({ ...data, processes });
   } catch (e) {
     return next(e);
   }
