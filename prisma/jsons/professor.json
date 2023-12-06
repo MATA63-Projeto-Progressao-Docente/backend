@@ -1,0 +1,26 @@
+[
+	{
+		"name": "João da Silva",
+		"classId": 5,
+		"departmentId": 1,
+		"category": "'EXCLUSIVE'"
+	},
+	{
+		"name": "Maria Barbosa",
+		"classId": 7,
+		"departmentId": 1,
+		"category": "'EXCLUSIVE'"
+	},
+	{
+		"name": "Gustavo Santos",
+		"classId": 8,
+		"departmentId": 1,
+		"category": "'EXCLUSIVE'"
+	},
+	{
+		"name": "Yago Bombauch",
+		"classId": 10,
+		"departmentId": 1,
+		"category": "'EXCLUSIVE'"
+	}
+]

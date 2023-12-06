@@ -1,0 +1,86 @@
+[
+	{
+		"name": "Professor Adjunto A",
+		"letter": "A",
+		"level": 1,
+		"id": 1
+	},
+	{
+		"name": "Professor Adjunto A",
+		"letter": "A",
+		"level": 2,
+		"id": 2
+	},
+	{
+		"name": "Professor Assistente",
+		"letter": "B",
+		"level": 1,
+		"id": 3
+	},
+	{
+		"name": "Professor Assistente",
+		"letter": "B",
+		"level": 2,
+		"id": 4
+	},
+	{
+		"name": "Professor Adjunto",
+		"letter": "C",
+		"level": 1,
+		"id": 5
+	},
+	{
+		"name": "Professor Adjunto",
+		"letter": "C",
+		"level": 2,
+		"id": 6
+	},
+	{
+		"name": "Professor Adjunto",
+		"letter": "C",
+		"level": 3,
+		"id": 7
+	},
+	{
+		"name": "Professor Adjunto",
+		"letter": "C",
+		"level": 4,
+		"id": 8
+	},
+	{
+		"name": "Professor Associado",
+		"letter": "D",
+		"level": 1,
+		"id": 9
+	},
+	{
+		"name": "Professor Associado",
+		"letter": "D",
+		"level": 2,
+		"id": 10
+	},
+	{
+		"name": "Professor Associado",
+		"letter": "D",
+		"level": 3,
+		"id": 11
+	},
+	{
+		"name": "Professor Associado",
+		"letter": "D",
+		"level": 4,
+		"id": 12
+	},
+	{
+		"name": "Professor Titular",
+		"letter": "E",
+		"level": 1,
+		"id": 13
+	},
+	{
+		"name": "Professor Titular-Livre do Magistério Superior",
+		"letter": "U",
+		"level": 1,
+		"id": 14
+	}
+]

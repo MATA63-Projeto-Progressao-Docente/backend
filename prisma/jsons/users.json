@@ -1,0 +1,26 @@
+[
+	{
+		"name": "João da Silva",
+		"email": "joao.silva@ufba.br",
+		"password": "$2a$10$0.IkWiuZ2bmxdd7ZA2hpQ..U5pukWjKZymtp6TebYx7XE/ghsP2jW",
+		"role": "USER"
+	},
+	{
+		"name": "Maria Barbosa",
+		"email": "maria.barbosa@ufba.br",
+		"password": "$2a$10$0.IkWiuZ2bmxdd7ZA2hpQ..U5pukWjKZymtp6TebYx7XE/ghsP2jW",
+		"role": "USER"
+	},
+	{
+		"name": "Gustavo Santos",
+		"email": "gustavo.santos@ufba.br",
+		"password": "$2a$10$0.IkWiuZ2bmxdd7ZA2hpQ..U5pukWjKZymtp6TebYx7XE/ghsP2jW",
+		"role": "USER"
+	},
+	{
+		"name": "Yago Bombauch",
+		"email": "yago@ufba.br",
+		"password": "$2a$10$0.IkWiuZ2bmxdd7ZA2hpQ..U5pukWjKZymtp6TebYx7XE/ghsP2jW",
+		"role": "'USER'"
+	}
+]
