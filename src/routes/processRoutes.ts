@@ -1,9 +1,17 @@
 import { Router } from 'express';
-import { createProcess } from '../controllers/processController';
-import validateToken from '../middlewares/validateToken';
+import multer from 'multer';
+import * as processController from '../controllers/processController';
 
 const processRouter = Router();
 
-processRouter.post('/', validateToken, createProcess);
+const storage = multer({
+  dest: 'uploads/',
+});
+
+processRouter.post(
+  '/',
+  storage.fields([{ name: 'documentsFiles' }]),
+  processController.createProcess,
+);
 
 export default processRouter;

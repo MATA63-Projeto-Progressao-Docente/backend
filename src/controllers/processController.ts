@@ -19,11 +19,11 @@ export async function createProcess(req: AuthenticatedRequest, res: Response, ne
     status: z.nativeEnum(ProcessStatus).optional(),
     documents: z.array(
       z.object({
-        url: z.string().url(),
         totalPoints: z.number().int().positive(),
         activityId: z.number().int().positive(),
       }),
     ),
+    documentsFiles: z.array(z.any()).optional(),
   });
 
   const { userId = req.body.userId } = req;
@@ -40,7 +40,16 @@ export async function createProcess(req: AuthenticatedRequest, res: Response, ne
   }
 
   try {
-    const process = await processService.createProcess(validationResult.data);
+    const documents = validationResult.data.documents.map((document, i) => ({
+      file: validationResult.data.documentsFiles?.at(i),
+      totalPoints: document.totalPoints,
+      activityId: document.activityId,
+    }));
+
+    const process = await processService.createProcess({
+      ...validationResult.data,
+      documents,
+    });
 
     return res.status(HttpStatusCodes.CREATED).json(process);
   } catch (e) {
