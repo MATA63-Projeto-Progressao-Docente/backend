@@ -8,7 +8,14 @@ import handleError from './middlewares/handleError';
 const app = express();
 
 app.use(express.json({}));
-app.use(cors());
+app.use(cors({
+  origin: [
+    'htpp://localhost:3000',
+    'https://frontend-pied-eight.vercel.app/',
+  ],
+  credentials: true,
+  exposedHeaders: ['set-cookie'],
+}));
 app.use(cookieParser());
 
 app.use('/', router);
