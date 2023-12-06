@@ -7,6 +7,8 @@ processRouter.post('/', processController.createProcess);
 
 processRouter.get('/', processController.getUserProcesses);
 
+processRouter.get('/:id(\\d+)', processController.getProcessById);
+
 processRouter
   .put('/process/:id(\\d+)/committee', processController.assignEvaluationCommittee);
 

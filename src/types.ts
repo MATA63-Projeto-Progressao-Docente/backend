@@ -5,4 +5,6 @@ import { Request } from 'express';
 
 export type JWTPayload = { userId: number, role: Role };
 
-export type AuthenticatedRequest = Request & { userId?: number, userRole?: Role };
+export type RequestAuthData = { userId?: number, userRole?: Role };
+
+export type AuthenticatedRequest = Request & RequestAuthData;

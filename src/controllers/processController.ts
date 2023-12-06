@@ -87,3 +87,24 @@ export async function assignEvaluationCommittee(
 
   return res.status(200).json(result);
 }
+
+export async function getProcessById(
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const process = await processService.getProcessById(Number(req.params.id), {
+      userId: req.userId!,
+      userRole: req.userRole!,
+    });
+
+    return res.status(HttpStatusCodes.OK).json(process);
+  } catch (e) {
+    if (e instanceof PrismaClientKnownRequestError) {
+      return next(PrismaError.fromPrismaError(e));
+    }
+
+    return next(e);
+  }
+}
