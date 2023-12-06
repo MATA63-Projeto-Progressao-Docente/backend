@@ -61,8 +61,8 @@ model SubmittedDocument {
 }
 
 model Class {
-  id     Int    @id @default(autoincrement())
-  name   String @unique
+  id     Int    @id
+  name   String 
   letter String @db.Char(1)
   level  Int    @db.SmallInt
 
