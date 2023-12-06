@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { createProcess } from '../controllers/processController';
-import blockNonAdminUser from '../middlewares/blockNonAdminUser';
+import validateToken from '../middlewares/validateToken';
 
 const processRouter = Router();
 
-processRouter.post('/', blockNonAdminUser, createProcess);
+processRouter.post('/', validateToken, createProcess);
 
 export default processRouter;
