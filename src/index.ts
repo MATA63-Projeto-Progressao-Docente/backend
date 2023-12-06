@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json({}));
 app.use(cors({
   origin: [
-    'htpp://localhost:3000',
+    'http://localhost:3000',
     'https://frontend-pied-eight.vercel.app/',
   ],
   credentials: true,
