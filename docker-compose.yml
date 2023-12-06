@@ -11,10 +11,20 @@ services:
       - 5432
     ports:
       - "5432:5432"
+    networks:
+      - backend
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8282:8081
+    networks:
+      - backend
 
   api:
     image: node:18-alpine
-    command: sh -c "npm install && npx prisma migrate deploy && npx prisma db seed && npm run dev"
+    command: sh -c "npm run dev"
     working_dir: /app
     volumes:
       - ./:/app
@@ -22,6 +32,8 @@ services:
       - db
     ports:
       - ${SERVER_PORT:-4000}:${SERVER_PORT:-4000}
+    networks:
+      - backend
 
   docs:
     image: swaggerapi/swagger-ui
@@ -32,3 +44,8 @@ services:
       - ./docs:/usr/share/nginx/html/swagger
     environment:
       API_URL: swagger/swagger.yaml
+    networks:
+      - backend
+
+networks:
+  backend:
